@@ -1,5 +1,5 @@
 # EDM-Portfolio - Munoz J.
-Welcome to my portfolio! This repository showcases my work on various Enterprise Data Management (EDM) lab tasks, including Data Cleansing, Data Normalization, and Entity Relationship Diagrams. 
+Welcome to my portfolio! This repository showcases my work on various Enterprise Data Management (EDM) lab tasks.
 These projects reflect my understanding and hands-on experience with data management principles.
 ## About Me
 Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently, I’m pursuing a Bachelor of Science in Information Systems at the City College of Angeles. 
