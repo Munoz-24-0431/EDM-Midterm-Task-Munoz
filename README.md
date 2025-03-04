@@ -9,5 +9,5 @@ I'm passionate about data management, system analysis, and finding efficient way
 - High School: Gov. Rafael L. Lazatin Integrated School
 - Elementary: Pulung Cacutud Elementary School
 ## My Projects
-- Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](Midterm%20Lab%20Task%201/task 1.md)
+- Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](Midterm%20Lab%20Task%201/task%201.md)
 - Midterm Lab Task 2: 
