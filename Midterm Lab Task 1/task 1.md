@@ -12,3 +12,5 @@ This project focuses on data cleaning and preparation techniques using Excel. Th
 - Carried out Third Normal Form (3NF) by removing transitive dependencies.
 - Mapped the normalized tables into a physical data model for implementation.
 ## Step 3 - Heres the screenshot of my output before I started data cleaning (See Screenshot)
+![screenshot](images/temp.JPG)
+## Step 4 - Heres the screenshot of my output after I started data cleaning (See Screenshot)
