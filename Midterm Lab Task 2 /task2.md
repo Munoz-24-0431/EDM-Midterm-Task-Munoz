@@ -1,4 +1,4 @@
-# Midterm Lab Task 2 – Data Cleaning and Transformation
+# [Midterm Lab Task 2](https://github.com/user-attachments/files/19143859/Midterm.Lab.Task.2.Munoz.xlsx) – Data Cleaning and Transformation
 This repository contains my solution for Midterm Lab Task 2 on data cleaning and transformation. The task involves various steps for cleaning and reshaping a raw dataset related to job listings, including salary estimates, job roles, company sizes, and locations. The goal was to improve the data's structure and prepare it for analysis using Power Query in Excel.
 ## Step 1 - Data Loading and Duplication
 **1.1 Load the Dataset:**
@@ -141,13 +141,32 @@ Right-click on the duplicated query and select Reference.
 
 **7.1 Ensure Final Queries:**
 
-Your final queries should include the following:
+**Heres the screenshot of my output before I started data cleaning using power query (See Screenshot)**
+**- Uncleaned DS Jobs**
+![Image](https://github.com/user-attachments/assets/8054f4f6-20b2-4836-91b4-26d078980045)
 
-- Sal by Role Type (dupl)
-- Sal by Size (ref)
-- State
-- Sal by State (ref)
-- Uncleaned DS Jobs
+**Heres the screenshot of my output after I started data cleaning using power query (See Screenshot)**
+**- Cleaned DS Jobs**
+![Image](https://github.com/user-attachments/assets/de88530f-2ea8-49b0-ad71-1de65967a8e9)
+**- Your final queries should include the following:**
+
+**- Sal by Role Type (dupl)**
+![Image](https://github.com/user-attachments/assets/ef8dbfc2-54e6-4f92-9f60-05e2ee31459b)
+
+**- Sal by Size (ref)**
+![Image](https://github.com/user-attachments/assets/3bb6ee29-9cd4-4c55-905e-433cfd5b8d2d)
+
+**- State**
+![Image](https://github.com/user-attachments/assets/13908e99-6588-483f-8643-1a02af873648)
+
+**- Sal by State (ref)**
+![Image](https://github.com/user-attachments/assets/68139da5-18b3-4f90-8b07-da288ea5f51b)
+
+**- Sal By Size Type Role Ref SS**
+![Image](https://github.com/user-attachments/assets/03e05866-679a-4e64-b3e4-ef4b10a48aee)
+
+**- Data Query Structure**
+![Image](https://github.com/user-attachments/assets/2b7c2a74-7d8d-4dc9-b13f-95e8169ce62a)
   
 **7.2 Copy Applied Steps:**
 - Go to Home → Advanced Editor.
