@@ -5,8 +5,6 @@
 - Open Excel and go to the Data tab.
 - Choose New Query → Open File → Text/CSV.
 - Select the file and load it into Power Query Editor.
-
-![Image](https://github.com/user-attachments/assets/3417a3d3-c931-4f39-ad92-dc68646d7945)
   
 **1.2 Duplicate the Raw Data:**
 - Right-click on the raw data query in the Queries pane.
