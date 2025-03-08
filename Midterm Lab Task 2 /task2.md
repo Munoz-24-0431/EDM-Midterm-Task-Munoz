@@ -168,9 +168,6 @@ Right-click on the duplicated query and select Reference.
 **- Data Query Structure**
 ![Image](https://github.com/user-attachments/assets/2b7c2a74-7d8d-4dc9-b13f-95e8169ce62a)
   
-**7.2 Copy Applied Steps:**
-- Go to Home → Advanced Editor.
-- Copy all the applied steps and include them in your portfolio as proof of your data-cleaning activities.
 
 
 
