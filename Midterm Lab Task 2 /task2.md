@@ -163,9 +163,6 @@ Right-click on the duplicated query and select Reference.
 - **Sal by State (ref)**
 ![Image](https://github.com/user-attachments/assets/68139da5-18b3-4f90-8b07-da288ea5f51b)
 
-- **Sal By Size Type Role Ref SS**
-![Image](https://github.com/user-attachments/assets/03e05866-679a-4e64-b3e4-ef4b10a48aee)
-
 - **Data Query Structure**
 ![Image](https://github.com/user-attachments/assets/2b7c2a74-7d8d-4dc9-b13f-95e8169ce62a)
 
