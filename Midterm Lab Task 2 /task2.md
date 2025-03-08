@@ -1,4 +1,5 @@
 # Midterm Lab Task 2 – Data Cleaning and Transformation
+This repository contains my solution for Midterm Lab Task 2 on data cleaning and transformation. The task involves various steps for cleaning and reshaping a raw dataset related to job listings, including salary estimates, job roles, company sizes, and locations. The goal was to improve the data's structure and prepare it for analysis using Power Query in Excel.
 ## Step 1 - Data Loading and Duplication
 **1.1 Load the Dataset:**
 - Download the Uncleaned_DS_jobs.csv dataset.
@@ -151,6 +152,9 @@ Your final queries should include the following:
 **7.2 Copy Applied Steps:**
 - Go to Home → Advanced Editor.
 - Copy all the applied steps and include them in your portfolio as proof of your data-cleaning activities.
+
+
+
 
 
 
