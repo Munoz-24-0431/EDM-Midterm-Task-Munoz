@@ -12,5 +12,5 @@ When I'm not immersed in tech, I love listening to R&B and pop songs, especially
 - High School: Gov. Rafael L. Lazatin Integrated School
 - Elementary: Pulung Cacutud Elementary School
 ## My Projects
-- Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](Midterm%20Lab%20Task%201/task%201.md)
+- Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](https://github.com/Munoz-24-0431/EDM-Midterm-Task-Munoz/blob/main/Midterm%20Lab%20Task%201/task%201.md)
 - Midterm Lab Task 2: [Data Cleaning and Preparation using Power Query](https://github.com/Munoz-24-0431/EDM-Midterm-Task-Munoz/blob/main/Midterm%20Lab%20Task%202%20/task2.md)
