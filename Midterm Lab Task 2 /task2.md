@@ -146,27 +146,31 @@ Right-click on the duplicated query and select Reference.
 ![Image](https://github.com/user-attachments/assets/8054f4f6-20b2-4836-91b4-26d078980045)
 
 **Heres the screenshot of my output after I started data cleaning using power query (See Screenshot)**
-**- Cleaned DS Jobs**
+- **Cleaned DS Jobs**
 ![Image](https://github.com/user-attachments/assets/de88530f-2ea8-49b0-ad71-1de65967a8e9)
-**- Your final queries should include the following:**
 
-**- Sal by Role Type (dupl)**
+## YOUR FINAL QUERIES SHOULD INCLUDE THE FOLLOWING:
+
+- **Sal by Role Type (dupl)**
 ![Image](https://github.com/user-attachments/assets/ef8dbfc2-54e6-4f92-9f60-05e2ee31459b)
 
-**- Sal by Size (ref)**
+- **Sal by Size (ref)**
 ![Image](https://github.com/user-attachments/assets/3bb6ee29-9cd4-4c55-905e-433cfd5b8d2d)
 
-**- State**
+- **State**
 ![Image](https://github.com/user-attachments/assets/13908e99-6588-483f-8643-1a02af873648)
 
-**- Sal by State (ref)**
+- **Sal by State (ref)**
 ![Image](https://github.com/user-attachments/assets/68139da5-18b3-4f90-8b07-da288ea5f51b)
 
-**- Sal By Size Type Role Ref SS**
+- **Sal By Size Type Role Ref SS**
 ![Image](https://github.com/user-attachments/assets/03e05866-679a-4e64-b3e4-ef4b10a48aee)
 
-**- Data Query Structure**
+- **Data Query Structure**
 ![Image](https://github.com/user-attachments/assets/2b7c2a74-7d8d-4dc9-b13f-95e8169ce62a)
+
+- **Here's my Avance Editor**
+![Image](https://github.com/user-attachments/assets/221b3b40-54e5-4737-829a-0578e304adfc)
   
 
 
