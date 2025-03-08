@@ -10,4 +10,4 @@ I'm passionate about data management, system analysis, and finding efficient way
 - Elementary: Pulung Cacutud Elementary School
 ## My Projects
 - Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](Midterm%20Lab%20Task%201/task%201.md)
-- Midterm Lab Task 2: 
+- Midterm Lab Task 2: [Data Cleaning and Preparation using Power Query](Midterm%20Lab%20Task%202%20/task2.md)
