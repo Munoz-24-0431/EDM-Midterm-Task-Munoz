@@ -166,7 +166,7 @@ Right-click on the duplicated query and select Reference.
 - **Data Query Structure**
 ![Image](https://github.com/user-attachments/assets/2b7c2a74-7d8d-4dc9-b13f-95e8169ce62a)
 
-- **Here's my Avance Editor**
+- **Here's my Advance Editor**
 ![Image](https://github.com/user-attachments/assets/221b3b40-54e5-4737-829a-0578e304adfc)
   
 
