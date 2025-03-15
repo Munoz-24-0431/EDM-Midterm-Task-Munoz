@@ -15,5 +15,5 @@ When I'm not immersed in tech, I love listening to R&B and pop songs, especially
 
 ## My Projects
 - Midterm Lab Task 1: [Data Cleaning and Preparation using Excel](https://munoz-24-0431.github.io/Midterm-Lab-Task-1/)
-- Midterm Lab Task 2: [Data Cleaning and Preparation using Power Query](https://munoz-24-0431.github.io/Midterm-Lab-Task-2/)
+- Midterm Lab Task 2: [Data Cleaning and Preparation using Power Query](https://munoz-24-0431.github.io/Midterm-Lab-Task-3/)
 - Midterm Lab Task 3: [Creating Pivot Table and Dashboard](https://munoz-24-0431.github.io/Midterm-Lab-Task-3/)
