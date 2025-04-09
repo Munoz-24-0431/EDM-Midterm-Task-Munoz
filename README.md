@@ -17,4 +17,4 @@ When I'm not immersed in tech, I love listening to R&B and pop songs, especially
 - Midterm Lab Task 3: [Creating Pivot Table and Dashboard](https://munoz-24-0431.github.io/Midterm-Lab-Task-3/)
 
 ## My Final Projects
-- Final Lab Task 1: [MySQL Basics](https://munoz-24-0431.github.io/Midterm-Lab-Task-1/)
+- Final Lab Task 1: [MySQL Basics](https://munoz-24-0431.github.io/Finals-Lab-Task-1-/)
