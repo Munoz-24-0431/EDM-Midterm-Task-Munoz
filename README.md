@@ -18,3 +18,4 @@ When I'm not immersed in tech, I love listening to R&B and pop songs, especially
 
 ## My Final Projects
 - Final Lab Task 1: [MySQL Basics](https://munoz-24-0431.github.io/Finals-Lab-Task-1-/)
+- Final Lab Task 2: [Transforming ER Model to Relational Tables](https://munoz-24-0431.github.io/Finals-Lab-Task-2/)
