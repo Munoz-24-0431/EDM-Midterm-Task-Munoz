@@ -325,6 +325,75 @@
             margin-bottom: 1rem;
             line-height: 1.8;
         }
+
+        /* Profile Picture Styles */
+        .profile-picture-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border-radius: 50%;
+            padding: 8px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-picture-container::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            z-index: -1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        .profile-picture {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--space-dark);
+        }
+
+        .profile-picture-orbit {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 220px;
+            height: 220px;
+            transform: translate(-50%, -50%);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            border-radius: 50%;
+            animation: orbit 20s linear infinite;
+        }
+
+        .orbit-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -334,6 +403,16 @@
 
     <div class="container">
         <header class="header">
+            <div class="profile-picture-container">
+                <div class="profile-picture-orbit">
+                    <div class="orbit-star" style="top: 0; left: 50%;"></div>
+                    <div class="orbit-star" style="bottom: 0; left: 50%;"></div>
+                    <div class="orbit-star" style="left: 0; top: 50%;"></div>
+                    <div class="orbit-star" style="right: 0; top: 50%;"></div>
+                </div>
+                <!-- Replace the src with your actual image URL when you have it -->
+                <img src="YOUR_IMAGE_URL_HERE" alt="Justine Muñoz" class="profile-picture">
+            </div>
             <h1 class="name-title">Justine Muñoz</h1>
             <p class="subtitle">Enterprise Data Management Portfolio</p>
         </header>
