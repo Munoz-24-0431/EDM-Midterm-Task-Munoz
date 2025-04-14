@@ -21,6 +21,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: none;
         }
 
         body {
@@ -31,7 +32,47 @@
             overflow-x: hidden;
         }
 
-        /* Cosmic Background */
+        /* Milky Way Animation */
+        .milky-way {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(4px 4px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 130px 80px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 160px 120px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 200px 150px, #fff, rgba(0,0,0,0)),
+                radial-gradient(4px 4px at 250px 180px, #fff, rgba(0,0,0,0)),
+                radial-gradient(3px 3px at 300px 220px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            animation: milkyWayMove 300s linear infinite;
+            opacity: 0.8;
+        }
+
+        .galaxy {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+            background: 
+                radial-gradient(ellipse at center, rgba(157, 78, 221, 0.4) 0%, rgba(0,0,0,0) 70%),
+                radial-gradient(ellipse at center, rgba(72, 191, 227, 0.4) 0%, rgba(0,0,0,0) 70%),
+                radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, rgba(0,0,0,0) 60%),
+                radial-gradient(ellipse at center, rgba(157, 78, 221, 0.2) -20%, rgba(0,0,0,0) 60%);
+            transform: scale(2.5);
+            animation: galaxyRotate 180s linear infinite;
+        }
+
         .cosmic-background {
             position: fixed;
             top: 0;
@@ -40,8 +81,13 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            background: radial-gradient(circle at center, #1a1b4b 0%, #0a0b1a 100%);
-            opacity: 0.8;
+            background: 
+                radial-gradient(circle at center, #1a1b4b 0%, #0a0b1a 100%),
+                linear-gradient(45deg, rgba(157, 78, 221, 0.2) 0%, rgba(72, 191, 227, 0.2) 100%),
+                radial-gradient(circle at 20% 80%, rgba(157, 78, 221, 0.3) 0%, rgba(0,0,0,0) 40%),
+                radial-gradient(circle at 80% 20%, rgba(72, 191, 227, 0.3) 0%, rgba(0,0,0,0) 40%);
+            opacity: 0.95;
+            animation: backgroundPulse 15s ease-in-out infinite;
         }
 
         /* Stars Animation */
@@ -106,6 +152,40 @@
             transform: translateY(50px);
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 30px rgba(157, 78, 221, 0.2),
+                0 0 50px rgba(72, 191, 227, 0.1);
+            border-color: rgba(157, 78, 221, 0.4);
+            background: rgba(45, 50, 82, 0.5);
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                rgba(157, 78, 221, 0.1),
+                transparent 70%
+            );
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.6s ease;
+        }
+
+        .profile-section:hover::before {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .name-title {
@@ -140,14 +220,40 @@
             border-radius: 10px;
             text-decoration: none;
             color: var(--text-color);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-item:hover {
             background: rgba(157, 78, 221, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.2);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 5px 15px rgba(157, 78, 221, 0.2),
+                0 0 30px rgba(72, 191, 227, 0.1);
+        }
+
+        .contact-item::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                rgba(72, 191, 227, 0.1),
+                transparent 70%
+            );
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+        }
+
+        .contact-item:hover::after {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .contact-item i {
@@ -171,6 +277,15 @@
             50% { text-shadow: 0 0 40px rgba(72, 191, 227, 0.8); }
         }
 
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(72, 191, 227, 0.3);
+            }
+        }
+
         /* Project Cards */
         .projects-grid {
             display: grid;
@@ -185,30 +300,42 @@
             border-radius: 15px;
             padding: 1.5rem;
             border: 1px solid rgba(157, 78, 221, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 10px 20px rgba(157, 78, 221, 0.2),
+                0 0 30px rgba(72, 191, 227, 0.3),
+                0 0 50px rgba(157, 78, 221, 0.1);
+            border-color: rgba(157, 78, 221, 0.5);
+            background: rgba(45, 50, 82, 0.5);
         }
 
-        .project-card::before {
+        .project-card::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            width: 200%;
             height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+            background: linear-gradient(
+                60deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                transparent
+            );
             transform: translateX(-100%);
             transition: transform 0.6s ease;
         }
 
-        .project-card:hover::before {
-            transform: translateX(100%);
+        .project-card:hover::after {
+            transform: translateX(0);
         }
 
         .project-card h3 {
@@ -217,36 +344,54 @@
         }
 
         .project-card a {
-            color: var(--link-color);
-            text-decoration: none;
             display: inline-block;
+            color: var(--text-color);
+            text-decoration: none;
             margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--link-color);
-            border-radius: 20px;
-            transition: all 0.3s ease;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--accent-purple);
+            border-radius: 25px;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: rgba(157, 78, 221, 0.1);
+            z-index: 1;
+        }
+
+        .project-card a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            transition: width 0.4s ease;
+            z-index: -1;
         }
 
         .project-card a:hover {
-            background: var(--link-color);
-            color: var(--space-dark);
+            color: white;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
+
+        .project-card a:hover::before {
+            width: 100%;
+        }
+
+        .project-card p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            opacity: 0.9;
         }
 
         /* Education Section */
         .education-timeline {
             position: relative;
             padding: 2rem 0;
-        }
-
-        .education-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: var(--accent-purple);
-            opacity: 0.3;
         }
 
         .timeline-item {
@@ -260,6 +405,38 @@
             opacity: 0;
             animation: slideIn 0.5s ease forwards;
             position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px) scale(1.01);
+            background: rgba(45, 50, 82, 0.5);
+            box-shadow: 
+                -5px 0 20px rgba(157, 78, 221, 0.3),
+                0 0 30px rgba(72, 191, 227, 0.2);
+            border-left-width: 8px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(157, 78, 221, 0.1),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .timeline-item:hover::after {
+            transform: translateX(0);
         }
 
         .timeline-item::before {
@@ -268,6 +445,7 @@
             left: -2.5rem;
             color: var(--accent-purple);
             font-size: 1.5rem;
+            opacity: 0;
         }
 
         @keyframes slideIn {
@@ -328,12 +506,8 @@
                 padding: 0.5rem;
             }
 
-            .education-timeline::before {
-                left: 2rem;
-            }
-
             .timeline-item {
-                margin-left: 3rem;
+                margin-left: 0;
             }
 
             .social-links {
@@ -443,9 +617,174 @@
             from { transform: translate(-50%, -50%) rotate(0deg); }
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
+
+        @keyframes milkyWayMove {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 1000px 1000px;
+            }
+        }
+
+        @keyframes galaxyRotate {
+            from {
+                transform: rotate(0deg) scale(2.5);
+            }
+            to {
+                transform: rotate(360deg) scale(2.5);
+            }
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% {
+                opacity: 0.95;
+            }
+            50% {
+                opacity: 0.85;
+            }
+        }
+
+        /* Meteor Shower Animation */
+        .meteor-shower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .meteor {
+            position: absolute;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+            animation: meteor linear;
+            transform: rotate(-45deg);
+            filter: blur(1px);
+            box-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(157, 78, 221, 0.4);
+        }
+
+        .meteor::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: meteorFlash 1s ease-in-out infinite;
+        }
+
+        @keyframes meteorFlash {
+            0% { transform: translateX(-100%) }
+            50% { transform: translateX(0%) }
+            100% { transform: translateX(100%) }
+        }
+
+        @keyframes meteor {
+            0% {
+                transform: translate(calc(var(--startX) * 1px), calc(var(--startY) * 1px)) rotate(var(--angle));
+                opacity: 1;
+            }
+            20% {
+                opacity: 1;
+            }
+            60% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(calc(var(--endX) * 1px), calc(var(--endY) * 1px)) rotate(var(--angle));
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Milky Way */
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -4;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(157, 78, 221, 0.2) 0%, rgba(0,0,0,0) 50%),
+                radial-gradient(circle at 70% 50%, rgba(72, 191, 227, 0.2) 0%, rgba(0,0,0,0) 50%),
+                radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(0,0,0,0) 40%);
+            animation: nebulaFloat 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes nebulaFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(2%, 2%) scale(1.05);
+            }
+            100% {
+                transform: translate(-2%, -2%) scale(0.95);
+            }
+        }
+
+        .project-card:hover h3,
+        .timeline-item:hover h3 {
+            color: var(--accent-purple);
+            text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+            transform: translateX(5px);
+            transition: all 0.3s ease;
+        }
+
+        /* Custom Cursor */
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9), rgba(157, 78, 221, 0.5) 70%, transparent);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+            box-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(157, 78, 221, 0.4);
+        }
+
+        .custom-cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(to bottom, transparent, rgba(157, 78, 221, 0.3), transparent);
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .custom-cursor.hover {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9), rgba(72, 191, 227, 0.5) 70%, transparent);
+        }
+
+        /* Enhanced Meteor Shower */
+        .meteor.large {
+            width: 80px !important;
+            height: 3px !important;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.9),
+                0 0 40px rgba(157, 78, 221, 0.6);
+        }
     </style>
 </head>
 <body>
+    <div class="custom-cursor"></div>
+    <div class="milky-way"></div>
+    <div class="galaxy"></div>
+    <div class="nebula"></div>
+    <div class="meteor-shower"></div>
     <div class="cosmic-background"></div>
     <div class="stars"></div>
 
@@ -548,10 +887,8 @@
 
     <div class="music-player">
         <div class="music-controls">
-            <audio id="background-music" loop>
-                <source src="https://youtu.be/4y33h81phKU?feature=shared" type="audio/mp4">
-            </audio>
-            <button onclick="toggleMusic()" id="music-toggle">Play Interstellar Theme</button>
+            <iframe id="youtube-player" width="0" height="0" src="https://www.youtube.com/embed/DZjkcvHdxc8?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+            <button onclick="toggleMusic()" id="music-toggle">Play Background Music</button>
         </div>
     </div>
 
@@ -588,26 +925,115 @@
             }
         }
 
-        // Music controls
+        // YouTube Player API
+        let player;
         let isPlaying = false;
-        const music = document.getElementById('background-music');
         const musicToggle = document.getElementById('music-toggle');
+
+        // Load YouTube API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player is ready
+            player.setVolume(50); // Set volume to 50%
+        }
+
+        function onPlayerStateChange(event) {
+            // When video ends (state = 0), replay it
+            if (event.data === 0) {
+                player.playVideo();
+            }
+        }
 
         function toggleMusic() {
             if (isPlaying) {
-                music.pause();
-                musicToggle.textContent = 'Play Interstellar Theme';
+                player.pauseVideo();
+                musicToggle.textContent = 'Play Background Music';
             } else {
-                music.play();
+                player.playVideo();
                 musicToggle.textContent = 'Pause Music';
             }
             isPlaying = !isPlaying;
+        }
+
+        // Create meteor shower
+        function createMeteors() {
+            const meteorShower = document.querySelector('.meteor-shower');
+            
+            function createMeteor() {
+                const meteor = document.createElement('div');
+                meteor.className = 'meteor';
+                
+                // Random starting positions with wider range
+                const angle = Math.random() * 30 - 65; // Angle between -65 and -35 degrees
+                const angleRad = (angle * Math.PI) / 180;
+                const speed = Math.random() * 2 + 0.5; // Increased speed range
+                
+                // Calculate start and end positions
+                const startX = Math.random() * window.innerWidth * 1.5; // Wider start area
+                const startY = -150; // Start higher above viewport
+                const distance = Math.random() * 1000 + 500; // Longer travel distance
+                const endX = startX + (distance * Math.cos(angleRad));
+                const endY = startY + (distance * Math.sin(angleRad));
+                
+                meteor.style.setProperty('--startX', startX);
+                meteor.style.setProperty('--startY', startY);
+                meteor.style.setProperty('--endX', endX);
+                meteor.style.setProperty('--endY', endY);
+                meteor.style.setProperty('--angle', `${angle}deg`);
+                
+                // Random size with chance for large meteors
+                const isLarge = Math.random() < 0.2; // 20% chance for large meteors
+                if (isLarge) {
+                    meteor.classList.add('large');
+                } else {
+                    const size = Math.random() * 4 + 2;
+                    const length = Math.random() * 50 + 20;
+                    meteor.style.width = `${length}px`;
+                    meteor.style.height = `${size}px`;
+                }
+                
+                meteor.style.boxShadow = isLarge ? 
+                    '0 0 20px rgba(255, 255, 255, 0.9), 0 0 40px rgba(157, 78, 221, 0.6)' :
+                    `0 0 ${size * 2}px rgba(255, 255, 255, 0.8)`;
+                
+                // Random duration based on speed
+                const duration = (Math.random() * 0.7 + 0.3) / speed;
+                meteor.style.animation = `meteor ${duration}s linear`;
+                
+                meteorShower.appendChild(meteor);
+                
+                setTimeout(() => {
+                    meteor.remove();
+                }, duration * 1000);
+            }
+            
+            // Create meteors more frequently
+            setInterval(createMeteor, 200); // Create a new meteor every 200ms
+            
+            // Create initial batch of meteors
+            for(let i = 0; i < 20; i++) {
+                setTimeout(createMeteor, Math.random() * 1000);
+            }
         }
 
         // Initialize
         window.addEventListener('load', () => {
             createStars();
             createCosmicDust();
+            createMeteors();
         });
 
         // Intersection Observer for animations
@@ -626,6 +1052,28 @@
         document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
             observer.observe(el);
         });
+
+        // Custom Cursor
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.querySelector('.custom-cursor');
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            // Add hover effect on interactive elements
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .timeline-item');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('hover');
+                });
+            });
+        });
     </script>
 </body>
 </html> 
+
