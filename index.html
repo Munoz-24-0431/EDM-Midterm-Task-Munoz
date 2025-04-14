@@ -518,4 +518,1564 @@
         });
     </script>
 </body>
+</html> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justine Muñoz - EDM Portfolio</title>
+    <style>
+        :root {
+            --space-dark: #0a0b1a;
+            --space-light: #2d3252;
+            --star-color: #ffffff;
+            --accent-purple: #9d4edd;
+            --accent-blue: #48bfe3;
+            --text-color: #e2e2e2;
+            --link-color: #a991ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--space-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cosmic Background */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1b4b 0%, #0a0b1a 100%);
+            opacity: 0.8;
+        }
+
+        /* Stars Animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Cosmic Dust */
+        .cosmic-dust {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: dust 20s linear infinite;
+        }
+
+        @keyframes dust {
+            from { transform: translateY(-100vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .profile-section {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .name-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(157, 78, 221, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(72, 191, 227, 0.8); }
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            color: var(--link-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--link-color);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card a:hover {
+            background: var(--link-color);
+            color: var(--space-dark);
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-purple);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-purple);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -2.5rem;
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(45, 50, 82, 0.8);
+            padding: 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .music-controls button {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-controls button:hover {
+            background: var(--accent-purple);
+            color: var(--space-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .name-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .music-player {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.5rem;
+            }
+
+            .education-timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                margin-left: 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+    <style>
+  .profile-section {
+    text-align: center;
+    margin: 2rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(200, 150, 255, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .profile-section h2 {
+    color: #99caff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #a2d0ff;
+  }
+
+  .profile-section img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-section p {
+    color: #ffffff;
+    font-size: 1rem;
+  }
+</style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cosmic-background"></div>
+    <div class="stars"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="name-title">Justine Muñoz</h1>
+            <p class="subtitle">Enterprise Data Management Portfolio</p>
+        </header>
+
+        <section class="profile-section">
+            <h2>About Me</h2>
+            <img class="center" src="https://github-production-user-asset-6210df.s3.amazonaws.com/201302626/433375887-f7f59b6c-ad0e-4890-b372-2af3dbbd0be3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250414T124010Z&X-Amz-Expires=300&X-Amz-Signature=e982e4976ba6c9dbfd5f419a06ac92f24b9de27a81d9c5aa60f9b11f8896a80f&X-Amz-SignedHeaders=host" alt="Justine Muñoz" />
+            <p>Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently pursuing a Bachelor of Science in Information Systems at the City College of Angeles.</p>
+            <p>I'm passionate about data management, system analysis, and finding efficient ways to manage and utilize data in real-world applications. When I'm not immersed in tech, I love listening to R&B and pop songs, especially from SZA and Ariana Grande.</p>
+        </section>
+
+        <section class="education-timeline">
+            <h2>Education Journey</h2>
+            <div class="timeline-item">
+                <h3>Bachelor of Science in Information Systems</h3>
+                <p>City College of Angeles - Ongoing</p>
+            </div>
+            <div class="timeline-item">
+                <h3>High School</h3>
+                <p>Gov. Rafael L. Lazatin Integrated School</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Elementary</h3>
+                <p>Pulung Cacutud Elementary School</p>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>My Projects</h2>
+            <h3>Midterm Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Excel</h3>
+                    <p>Midterm Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-1/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Power Query</h3>
+                    <p>Midterm Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Creating Pivot Table and Dashboard</h3>
+                    <p>Midterm Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <h3>Final Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>MySQL Basics</h3>
+                    <p>Final Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-1-/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Transforming ER Model to Relational Tables</h3>
+                    <p>Final Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-2/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Table Manipulation</h3>
+                    <p>Final Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="music-player">
+        <div class="music-controls">
+            <audio id="background-music" loop>
+                <source src="https://youtu.be/4y33h81phKU?feature=shared" type="audio/mp4">
+            </audio>
+            <button onclick="toggleMusic()" id="music-toggle">Play Interstellar Theme</button>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create cosmic dust
+        function createCosmicDust() {
+            const container = document.querySelector('.container');
+            const numberOfParticles = 50;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'cosmic-dust';
+                dust.style.left = `${Math.random() * 100}%`;
+                dust.style.animationDelay = `${Math.random() * 20}s`;
+                dust.style.opacity = Math.random();
+                container.appendChild(dust);
+            }
+        }
+
+        // Music controls
+        let isPlaying = false;
+        const music = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicToggle.textContent = 'Play Interstellar Theme';
+            } else {
+                music.play();
+                musicToggle.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createStars();
+            createCosmicDust();
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justine Muñoz - EDM Portfolio</title>
+    <style>
+        :root {
+            --space-dark: #0a0b1a;
+            --space-light: #2d3252;
+            --star-color: #ffffff;
+            --accent-purple: #9d4edd;
+            --accent-blue: #48bfe3;
+            --text-color: #e2e2e2;
+            --link-color: #a991ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--space-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cosmic Background */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1b4b 0%, #0a0b1a 100%);
+            opacity: 0.8;
+        }
+
+        /* Stars Animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Cosmic Dust */
+        .cosmic-dust {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: dust 20s linear infinite;
+        }
+
+        @keyframes dust {
+            from { transform: translateY(-100vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .profile-section {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .name-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(157, 78, 221, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(72, 191, 227, 0.8); }
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            color: var(--link-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--link-color);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card a:hover {
+            background: var(--link-color);
+            color: var(--space-dark);
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-purple);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-purple);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -2.5rem;
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(45, 50, 82, 0.8);
+            padding: 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .music-controls button {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-controls button:hover {
+            background: var(--accent-purple);
+            color: var(--space-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .name-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .music-player {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.5rem;
+            }
+
+            .education-timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                margin-left: 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+    <style>
+  .profile-section {
+    text-align: center;
+    margin: 2rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(200, 150, 255, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .profile-section h2 {
+    color: #99caff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #a2d0ff;
+  }
+
+  .profile-section img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-section p {
+    color: #ffffff;
+    font-size: 1rem;
+  }
+</style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cosmic-background"></div>
+    <div class="stars"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="name-title">Justine Muñoz</h1>
+            <p class="subtitle">Enterprise Data Management Portfolio</p>
+        </header>
+
+        <section class="profile-section">
+            <h2>About Me</h2>
+            <img class="center" src="https://github-production-user-asset-6210df.s3.amazonaws.com/201302626/433375887-f7f59b6c-ad0e-4890-b372-2af3dbbd0be3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250414T124010Z&X-Amz-Expires=300&X-Amz-Signature=e982e4976ba6c9dbfd5f419a06ac92f24b9de27a81d9c5aa60f9b11f8896a80f&X-Amz-SignedHeaders=host" alt="Justine Muñoz" />
+            <p>Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently pursuing a Bachelor of Science in Information Systems at the City College of Angeles.</p>
+            <p>I'm passionate about data management, system analysis, and finding efficient ways to manage and utilize data in real-world applications. When I'm not immersed in tech, I love listening to R&B and pop songs, especially from SZA and Ariana Grande.</p>
+        </section>
+
+        <section class="education-timeline">
+            <h2>Education Journey</h2>
+            <div class="timeline-item">
+                <h3>Bachelor of Science in Information Systems</h3>
+                <p>City College of Angeles - Ongoing</p>
+            </div>
+            <div class="timeline-item">
+                <h3>High School</h3>
+                <p>Gov. Rafael L. Lazatin Integrated School</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Elementary</h3>
+                <p>Pulung Cacutud Elementary School</p>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>My Projects</h2>
+            <h3>Midterm Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Excel</h3>
+                    <p>Midterm Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-1/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Power Query</h3>
+                    <p>Midterm Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Creating Pivot Table and Dashboard</h3>
+                    <p>Midterm Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <h3>Final Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>MySQL Basics</h3>
+                    <p>Final Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-1-/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Transforming ER Model to Relational Tables</h3>
+                    <p>Final Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-2/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Table Manipulation</h3>
+                    <p>Final Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="music-player">
+        <div class="music-controls">
+            <audio id="background-music" loop>
+                <source src="https://youtu.be/4y33h81phKU?feature=shared" type="audio/mp4">
+            </audio>
+            <button onclick="toggleMusic()" id="music-toggle">Play Interstellar Theme</button>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create cosmic dust
+        function createCosmicDust() {
+            const container = document.querySelector('.container');
+            const numberOfParticles = 50;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'cosmic-dust';
+                dust.style.left = `${Math.random() * 100}%`;
+                dust.style.animationDelay = `${Math.random() * 20}s`;
+                dust.style.opacity = Math.random();
+                container.appendChild(dust);
+            }
+        }
+
+        // Music controls
+        let isPlaying = false;
+        const music = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicToggle.textContent = 'Play Interstellar Theme';
+            } else {
+                music.play();
+                musicToggle.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createStars();
+            createCosmicDust();
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html> <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justine Muñoz - EDM Portfolio</title>
+    <style>
+        :root {
+            --space-dark: #0a0b1a;
+            --space-light: #2d3252;
+            --star-color: #ffffff;
+            --accent-purple: #9d4edd;
+            --accent-blue: #48bfe3;
+            --text-color: #e2e2e2;
+            --link-color: #a991ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--space-dark);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cosmic Background */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1b4b 0%, #0a0b1a 100%);
+            opacity: 0.8;
+        }
+
+        /* Stars Animation */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        /* Cosmic Dust */
+        .cosmic-dust {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: dust 20s linear infinite;
+        }
+
+        @keyframes dust {
+            from { transform: translateY(-100vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .profile-section {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .name-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(157, 78, 221, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(72, 191, 227, 0.8); }
+        }
+
+        /* Project Cards */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(157, 78, 221, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            color: var(--link-color);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--link-color);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card a:hover {
+            background: var(--link-color);
+            color: var(--space-dark);
+        }
+
+        /* Education Section */
+        .education-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-purple);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-left: 4px solid var(--accent-purple);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '●';
+            position: absolute;
+            left: -2.5rem;
+            color: var(--accent-purple);
+            font-size: 1.5rem;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(45, 50, 82, 0.8);
+            padding: 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+        }
+
+        .music-controls button {
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .music-controls button:hover {
+            background: var(--accent-purple);
+            color: var(--space-dark);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .name-title {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .music-player {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.5rem;
+            }
+
+            .education-timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                margin-left: 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+    <style>
+  .profile-section {
+    text-align: center;
+    margin: 2rem;
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 0 20px rgba(200, 150, 255, 0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .profile-section h2 {
+    color: #99caff;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 8px #a2d0ff;
+  }
+
+  .profile-section img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .profile-section p {
+    color: #ffffff;
+    font-size: 1rem;
+  }
+</style>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="cosmic-background"></div>
+    <div class="stars"></div>
+
+    <div class="container">
+        <header class="header">
+            <h1 class="name-title">Justine Muñoz</h1>
+            <p class="subtitle">Enterprise Data Management Portfolio</p>
+        </header>
+
+        <section class="profile-section">
+            <h2>About Me</h2>
+            <img class="center" src="https://github-production-user-asset-6210df.s3.amazonaws.com/201302626/433375887-f7f59b6c-ad0e-4890-b372-2af3dbbd0be3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20250414%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250414T124010Z&X-Amz-Expires=300&X-Amz-Signature=e982e4976ba6c9dbfd5f419a06ac92f24b9de27a81d9c5aa60f9b11f8896a80f&X-Amz-SignedHeaders=host" alt="Justine Muñoz" />
+            <p>Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently pursuing a Bachelor of Science in Information Systems at the City College of Angeles.</p>
+            <p>I'm passionate about data management, system analysis, and finding efficient ways to manage and utilize data in real-world applications. When I'm not immersed in tech, I love listening to R&B and pop songs, especially from SZA and Ariana Grande.</p>
+        </section>
+
+        <section class="education-timeline">
+            <h2>Education Journey</h2>
+            <div class="timeline-item">
+                <h3>Bachelor of Science in Information Systems</h3>
+                <p>City College of Angeles - Ongoing</p>
+            </div>
+            <div class="timeline-item">
+                <h3>High School</h3>
+                <p>Gov. Rafael L. Lazatin Integrated School</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Elementary</h3>
+                <p>Pulung Cacutud Elementary School</p>
+            </div>
+        </section>
+
+        <section class="projects">
+            <h2>My Projects</h2>
+            <h3>Midterm Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Excel</h3>
+                    <p>Midterm Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-1/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Data Cleaning and Preparation using Power Query</h3>
+                    <p>Midterm Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Creating Pivot Table and Dashboard</h3>
+                    <p>Midterm Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+
+            <h3>Final Projects</h3>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>MySQL Basics</h3>
+                    <p>Final Lab Task 1</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-1-/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Transforming ER Model to Relational Tables</h3>
+                    <p>Final Lab Task 2</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-2/" target="_blank">View Project</a>
+                </div>
+                <div class="project-card">
+                    <h3>Table Manipulation</h3>
+                    <p>Final Lab Task 3</p>
+                    <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="music-player">
+        <div class="music-controls">
+            <audio id="background-music" loop>
+                <source src="https://youtu.be/4y33h81phKU?feature=shared" type="audio/mp4">
+            </audio>
+            <button onclick="toggleMusic()" id="music-toggle">Play Interstellar Theme</button>
+        </div>
+    </div>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.querySelector('.stars');
+            const numberOfStars = 200;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${Math.random() * 3 + 1}s`);
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create cosmic dust
+        function createCosmicDust() {
+            const container = document.querySelector('.container');
+            const numberOfParticles = 50;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                const dust = document.createElement('div');
+                dust.className = 'cosmic-dust';
+                dust.style.left = `${Math.random() * 100}%`;
+                dust.style.animationDelay = `${Math.random() * 20}s`;
+                dust.style.opacity = Math.random();
+                container.appendChild(dust);
+            }
+        }
+
+        // Music controls
+        let isPlaying = false;
+        const music = document.getElementById('background-music');
+        const musicToggle = document.getElementById('music-toggle');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicToggle.textContent = 'Play Interstellar Theme';
+            } else {
+                music.play();
+                musicToggle.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createStars();
+            createCosmicDust();
+        });
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html> 
