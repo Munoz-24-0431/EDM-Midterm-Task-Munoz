@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justine Muñoz - EDM Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --space-dark: #0a0b1a;
@@ -113,6 +115,55 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 3s ease-in-out infinite;
+        }
+
+        /* Contact Info Styles */
+        .contact-info {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(45, 50, 82, 0.3);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(157, 78, 221, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(157, 78, 221, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            width: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2);
+        }
+
+        .contact-item span {
+            font-size: 1rem;
         }
 
         @keyframes glow {
@@ -284,6 +335,10 @@
             .timeline-item {
                 margin-left: 3rem;
             }
+
+            .social-links {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Animations */
@@ -389,7 +444,6 @@
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="cosmic-background"></div>
@@ -414,6 +468,28 @@
             <h2>About Me</h2>
             <p>Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently pursuing a Bachelor of Science in Information Systems at the City College of Angeles.</p>
             <p>I'm passionate about data management, system analysis, and finding efficient ways to manage and utilize data in real-world applications. When I'm not immersed in tech, I love listening to R&B and pop songs, especially from SZA and Ariana Grande.</p>
+            
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="social-links">
+                    <a href="tel:0936545169" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>0936545169</span>
+                    </a>
+                    <a href="https://www.facebook.com/justinemunoz123" target="_blank" class="contact-item">
+                        <i class="fab fa-facebook"></i>
+                        <span>@justinemunoz123</span>
+                    </a>
+                    <a href="https://www.facebook.com/justinemunoz123" target="_blank" class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>@justinemunoz123</span>
+                    </a>
+                    <a href="mailto:jmunoz24-0431@cca.edu.ph" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>jmunoz24-0431@cca.edu.ph</span>
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section class="education-timeline">
@@ -444,7 +520,7 @@
                 <div class="project-card">
                     <h3>Data Cleaning and Preparation using Power Query</h3>
                     <p>Midterm Lab Task 2</p>
-                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
+                    <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-2/" target="_blank">View Project</a>
                 </div>
                 <div class="project-card">
                     <h3>Creating Pivot Table and Dashboard</h3>
@@ -556,4 +632,4 @@
         });
     </script>
 </body>
-</html> 
+</html>
