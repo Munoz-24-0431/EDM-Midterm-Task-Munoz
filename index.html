@@ -155,15 +155,7 @@
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .profile-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 10px 30px rgba(157, 78, 221, 0.2),
-                0 0 50px rgba(72, 191, 227, 0.1);
-            border-color: rgba(157, 78, 221, 0.4);
-            background: rgba(45, 50, 82, 0.5);
+            cursor: pointer;
         }
 
         .profile-section::before {
@@ -181,20 +173,105 @@
             opacity: 0;
             transform: scale(0.5);
             transition: all 0.6s ease;
+            pointer-events: none;
+        }
+
+        .profile-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg,
+                transparent 40%,
+                rgba(72, 191, 227, 0.1) 45%,
+                rgba(157, 78, 221, 0.1) 50%,
+                transparent 55%);
+            filter: blur(5px);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+        }
+
+        .profile-section:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 10px 30px rgba(157, 78, 221, 0.2),
+                0 0 50px rgba(72, 191, 227, 0.1);
+            border-color: rgba(157, 78, 221, 0.4);
+            background: rgba(45, 50, 82, 0.5);
         }
 
         .profile-section:hover::before {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) rotate(180deg);
         }
 
-        .name-title {
-            font-size: 3.5rem;
+        .profile-section:hover::after {
+            transform: translateX(100%);
+        }
+
+        .profile-section h2 {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-section h2 i {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .profile-section:hover h2 i {
+            transform: rotate(360deg);
+            color: var(--accent-purple);
+        }
+
+        .profile-section p {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(45, 50, 82, 0.3);
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 3s ease-in-out infinite;
+            border: 1px solid transparent;
+            transform: translateX(0);
+        }
+
+        .profile-section p:hover {
+            background: rgba(157, 78, 221, 0.1);
+            border-color: rgba(72, 191, 227, 0.2);
+            transform: translateX(10px);
+            box-shadow: 
+                -5px 5px 15px rgba(157, 78, 221, 0.1),
+                0 0 20px rgba(72, 191, 227, 0.05);
+        }
+
+        /* Floating particles animation */
+        .profile-section .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+                transform: translate(var(--x), var(--y)) scale(1.2);
+            }
+            100% {
+                transform: translate(calc(var(--x) * 2), calc(var(--y) * 2)) scale(1);
+                opacity: 0;
+            }
         }
 
         /* Contact Info Styles */
@@ -202,6 +279,7 @@
             margin-top: 2rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(157, 78, 221, 0.2);
+            animation: fadeInUp 1s ease forwards;
         }
 
         .social-links {
@@ -215,9 +293,9 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem;
+            padding: 1.2rem;
             background: rgba(45, 50, 82, 0.3);
-            border-radius: 10px;
+            border-radius: 15px;
             text-decoration: none;
             color: var(--text-color);
             transition: all 0.4s ease;
@@ -234,38 +312,23 @@
                 0 0 30px rgba(72, 191, 227, 0.1);
         }
 
-        .contact-item::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(
-                circle at center,
-                rgba(72, 191, 227, 0.1),
-                transparent 70%
-            );
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.4s ease;
-        }
-
-        .contact-item:hover::after {
-            opacity: 1;
-            transform: scale(1);
-        }
-
         .contact-item i {
             font-size: 1.5rem;
             color: var(--accent-blue);
-            width: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(72, 191, 227, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
 
         .contact-item:hover i {
             transform: scale(1.2);
+            color: var(--accent-purple);
+            background: rgba(157, 78, 221, 0.2);
         }
 
         .contact-item span {
@@ -512,6 +575,10 @@
 
             .social-links {
                 grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                padding: 1rem;
             }
         }
 
@@ -777,6 +844,191 @@
                 0 0 20px rgba(255, 255, 255, 0.9),
                 0 0 40px rgba(157, 78, 221, 0.6);
         }
+
+        h2 i, h3 i {
+            margin-right: 0.5rem;
+            color: var(--accent-purple);
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Project Section Icons */
+        .project-card h3 i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+            color: var(--accent-blue);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover h3 i {
+            color: var(--accent-purple);
+            transform: scale(1.2);
+        }
+
+        .projects h2 i {
+            font-size: 1.8rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .projects h3 i {
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(45, 50, 82, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .contact-header i {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: rgba(45, 50, 82, 0.4);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+        }
+
+        .contact-detail:hover {
+            transform: translateY(-5px);
+            background: rgba(157, 78, 221, 0.2);
+            border-color: rgba(72, 191, 227, 0.4);
+            box-shadow: 
+                0 5px 15px rgba(157, 78, 221, 0.2),
+                0 0 30px rgba(72, 191, 227, 0.1);
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(72, 191, 227, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-detail:hover i {
+            transform: scale(1.2);
+            color: var(--accent-purple);
+            background: rgba(157, 78, 221, 0.2);
+        }
+
+        .detail-info {
+            flex: 1;
+        }
+
+        .detail-info h4 {
+            color: var(--accent-blue);
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .detail-info a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .detail-info a:hover {
+            color: var(--accent-purple);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-detail {
+                padding: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -804,31 +1056,13 @@
         </header>
 
         <section class="profile-section">
-            <h2>About Me</h2>
+            <h2><i class="fas fa-user-circle"></i> About Me</h2>
             <p>Hi there! I'm Justine Muñoz, an 18-year-old aspiring IT professional from Angeles City, Pampanga. Currently pursuing a Bachelor of Science in Information Systems at the City College of Angeles.</p>
             <p>I'm passionate about data management, system analysis, and finding efficient ways to manage and utilize data in real-world applications. When I'm not immersed in tech, I love listening to R&B and pop songs, especially from SZA and Ariana Grande.</p>
-            
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <div class="social-links">
-                    <a href="tel:0936545169" class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <span>0936545169</span>
-                    </a>
-                    <a href="https://www.facebook.com/justinemunoz123" target="_blank" class="contact-item">
-                        <i class="fab fa-facebook"></i>
-                        <span>@justinemunoz123</span>
-                    </a>
-                    <a href="mailto:jmunoz24-0431@cca.edu.ph" class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <span>jmunoz24-0431@cca.edu.ph</span>
-                    </a>
-                </div>
-            </div>
         </section>
 
         <section class="education-timeline">
-            <h2>Education Journey</h2>
+            <h2><i class="fas fa-graduation-cap"></i> Education Journey</h2>
             <div class="timeline-item">
                 <h3>Bachelor of Science in Information Systems</h3>
                 <p>City College of Angeles - Ongoing</p>
@@ -844,42 +1078,84 @@
         </section>
 
         <section class="projects">
-            <h2>My Projects</h2>
-            <h3>Midterm Projects</h3>
+            <h2><i class="fas fa-laptop-code"></i> My Projects</h2>
+            <h3><i class="fas fa-tasks"></i> Midterm Projects</h3>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>Data Cleaning and Preparation using Excel</h3>
+                    <h3><i class="fas fa-table"></i> Data Cleaning and Preparation using Excel</h3>
                     <p>Midterm Lab Task 1</p>
                     <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-1/" target="_blank">View Project</a>
                 </div>
                 <div class="project-card">
-                    <h3>Data Cleaning and Preparation using Power Query</h3>
+                    <h3><i class="fas fa-database"></i> Data Cleaning and Preparation using Power Query</h3>
                     <p>Midterm Lab Task 2</p>
                     <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-2/" target="_blank">View Project</a>
                 </div>
                 <div class="project-card">
-                    <h3>Creating Pivot Table and Dashboard</h3>
+                    <h3><i class="fas fa-chart-bar"></i> Creating Pivot Table and Dashboard</h3>
                     <p>Midterm Lab Task 3</p>
                     <a href="https://munoz-24-0431.github.io/Midterm-Lab-Task-3/" target="_blank">View Project</a>
                 </div>
             </div>
 
-            <h3>Final Projects</h3>
+            <h3><i class="fas fa-star"></i> Final Projects</h3>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>MySQL Basics</h3>
+                    <h3><i class="fas fa-server"></i> MySQL Basics</h3>
                     <p>Final Lab Task 1</p>
                     <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-1-/" target="_blank">View Project</a>
                 </div>
                 <div class="project-card">
-                    <h3>Transforming ER Model to Relational Tables</h3>
+                    <h3><i class="fas fa-project-diagram"></i> Transforming ER Model to Relational Tables</h3>
                     <p>Final Lab Task 2</p>
                     <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-2/" target="_blank">View Project</a>
                 </div>
                 <div class="project-card">
-                    <h3>Table Manipulation</h3>
+                    <h3><i class="fas fa-table"></i> Table Manipulation</h3>
                     <p>Final Lab Task 3</p>
                     <a href="https://munoz-24-0431.github.io/Finals-Lab-Task-3/" target="_blank">View Project</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2><i class="fas fa-paper-plane"></i> Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-card">
+                    <div class="contact-header">
+                        <i class="fas fa-id-card"></i>
+                        <h3>Contact Details</h3>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-detail">
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="detail-info">
+                                <h4>Phone</h4>
+                                <a href="tel:09365451698">09365451698</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div class="detail-info">
+                                <h4>Email</h4>
+                                <a href="mailto:jmunoz24-0431@cca.edu.ph">jmunoz24-0431@cca.edu.ph</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fab fa-facebook"></i>
+                            <div class="detail-info">
+                                <h4>Facebook</h4>
+                                <a href="https://www.facebook.com/share/15R5hKrsNs/" target="_blank">Visit Profile</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fab fa-instagram"></i>
+                            <div class="detail-info">
+                                <h4>Instagram</h4>
+                                <a href="https://www.instagram.com/j.thsisnvrtht/" target="_blank">@j.thsisnvrtht</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1072,6 +1348,35 @@
                     cursor.classList.remove('hover');
                 });
             });
+        });
+
+        // Add particle effect to profile section
+        function createParticles() {
+            const profileSection = document.querySelector('.profile-section');
+            
+            profileSection.addEventListener('mousemove', (e) => {
+                const rect = profileSection.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.setProperty('--x', (Math.random() * 100 - 50) + 'px');
+                particle.style.setProperty('--y', (Math.random() * 100 - 50) + 'px');
+                
+                profileSection.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+            });
+        }
+
+        // Initialize particle effect
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
         });
     </script>
 </body>
