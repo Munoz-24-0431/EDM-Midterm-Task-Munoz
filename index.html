@@ -889,33 +889,87 @@
             50% { transform: translateY(-5px) rotate(5deg); }
         }
 
-        /* Contact Section Styles */
+        /* Enhanced Contact Section Styles */
         .contact-section {
             padding: 4rem 0;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .contact-container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .contact-card {
             background: rgba(45, 50, 82, 0.3);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 25px;
+            padding: 3rem 2rem;
             border: 1px solid rgba(157, 78, 221, 0.2);
-            transform: translateY(30px);
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards;
             position: relative;
             overflow: hidden;
+            z-index: 3;
+            box-shadow: 
+                0 10px 30px rgba(157, 78, 221, 0.1),
+                0 0 50px rgba(72, 191, 227, 0.05);
         }
 
-        .contact-card::before {
+        .contact-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .contact-header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, 
+                transparent,
+                var(--accent-purple),
+                var(--accent-blue),
+                transparent
+            );
+            border-radius: 3px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            grid-auto-rows: 1fr;
+        }
+
+        .contact-detail {
+            background: rgba(45, 50, 82, 0.4);
+            border-radius: 20px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1;
+            height: 100%;
+            min-height: 120px;
+        }
+
+        .contact-detail::before {
             content: '';
             position: absolute;
             top: 0;
@@ -928,69 +982,62 @@
                 rgba(72, 191, 227, 0.1)
             );
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
 
-        .contact-card:hover::before {
-            opacity: 1;
-        }
-
-        .contact-header {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .contact-header i {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            animation: iconFloat 3s ease-in-out infinite;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem;
-            background: rgba(45, 50, 82, 0.4);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(157, 78, 221, 0.2);
+        .contact-detail::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle at center,
+                rgba(157, 78, 221, 0.2),
+                transparent 70%
+            );
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.6s ease;
+            z-index: -1;
         }
 
         .contact-detail:hover {
-            transform: translateY(-5px);
-            background: rgba(157, 78, 221, 0.2);
-            border-color: rgba(72, 191, 227, 0.4);
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(157, 78, 221, 0.4);
             box-shadow: 
-                0 5px 15px rgba(157, 78, 221, 0.2),
+                0 10px 20px rgba(157, 78, 221, 0.2),
                 0 0 30px rgba(72, 191, 227, 0.1);
+        }
+
+        .contact-detail:hover::before {
+            opacity: 1;
+        }
+
+        .contact-detail:hover::after {
+            opacity: 1;
+            transform: scale(1) rotate(180deg);
         }
 
         .contact-detail i {
             font-size: 1.5rem;
             color: var(--accent-blue);
-            width: 2.5rem;
-            height: 2.5rem;
+            width: 3rem;
+            height: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(72, 191, 227, 0.1);
             border-radius: 50%;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .contact-detail:hover i {
-            transform: scale(1.2);
+            transform: scale(1.1) rotate(360deg);
             color: var(--accent-purple);
             background: rgba(157, 78, 221, 0.2);
         }
@@ -1001,19 +1048,48 @@
 
         .detail-info h4 {
             color: var(--accent-blue);
-            margin-bottom: 0.3rem;
-            font-size: 1rem;
-        }
-
-        .detail-info a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
 
-        .detail-info a:hover {
+        .detail-info span {
+            color: var(--text-color);
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .contact-detail:hover .detail-info h4 {
             color: var(--accent-purple);
+        }
+
+        .contact-detail:hover .detail-info span {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Glowing effect for contact section */
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 50% 50%,
+                rgba(157, 78, 221, 0.1),
+                transparent 70%
+            );
+            opacity: 0.5;
+            animation: glowPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.3; }
         }
 
         @media (max-width: 768px) {
@@ -1023,10 +1099,11 @@
 
             .contact-grid {
                 grid-template-columns: 1fr;
+                max-width: 100%;
             }
 
             .contact-detail {
-                padding: 1rem;
+                padding: 1.2rem;
             }
         }
     </style>
@@ -1127,34 +1204,34 @@
                         <h3>Contact Details</h3>
                     </div>
                     <div class="contact-grid">
-                        <div class="contact-detail">
+                        <a href="tel:09365451698" class="contact-detail">
                             <i class="fas fa-phone-alt"></i>
                             <div class="detail-info">
                                 <h4>Phone</h4>
-                                <a href="tel:09365451698">09365451698</a>
+                                <span>09365451698</span>
                             </div>
-                        </div>
-                        <div class="contact-detail">
+                        </a>
+                        <a href="mailto:jmunoz24-0431@cca.edu.ph" class="contact-detail">
                             <i class="fas fa-envelope"></i>
                             <div class="detail-info">
                                 <h4>Email</h4>
-                                <a href="mailto:jmunoz24-0431@cca.edu.ph">jmunoz24-0431@cca.edu.ph</a>
+                                <span>jmunoz24-0431@cca.edu.ph</span>
                             </div>
-                        </div>
-                        <div class="contact-detail">
+                        </a>
+                        <a href="https://www.facebook.com/share/15R5hKrsNs/" target="_blank" class="contact-detail">
                             <i class="fab fa-facebook"></i>
                             <div class="detail-info">
                                 <h4>Facebook</h4>
-                                <a href="https://www.facebook.com/share/15R5hKrsNs/" target="_blank">Visit Profile</a>
+                                <span>Visit Profile</span>
                             </div>
-                        </div>
-                        <div class="contact-detail">
+                        </a>
+                        <a href="https://www.instagram.com/j.thsisnvrtht/" target="_blank" class="contact-detail">
                             <i class="fab fa-instagram"></i>
                             <div class="detail-info">
                                 <h4>Instagram</h4>
-                                <a href="https://www.instagram.com/j.thsisnvrtht/" target="_blank">@j.thsisnvrtht</a>
+                                <span>@j.thsisnvrtht</span>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
