@@ -622,7 +622,7 @@
             line-height: 1.8;
         }
 
-        /* Profile Picture Styles */
+        /* Enhanced Profile Picture Styles */
         .profile-picture-container {
             position: relative;
             width: 200px;
@@ -630,25 +630,65 @@
             margin: 0 auto 2rem;
             border-radius: 50%;
             padding: 8px;
-            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            background: transparent;
+            z-index: 2;
         }
 
+        /* Cosmic Ring Effect */
+        .profile-picture-container::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, 
+                rgba(157, 78, 221, 0.1),
+                rgba(72, 191, 227, 0.1),
+                rgba(157, 78, 221, 0.1)
+            );
+            z-index: 1;
+            animation: cosmicRing 8s linear infinite;
+        }
+
+        @keyframes cosmicRing {
+            0% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: rotate(180deg) scale(1.1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        /* Stardust Particles */
         .profile-picture-container::before {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
+            inset: -20px;
             border-radius: 50%;
-            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
-            z-index: -1;
-            animation: pulse 2s ease-in-out infinite;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, var(--accent-purple) 50%, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, var(--accent-blue) 50%, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, var(--accent-purple) 50%, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, var(--accent-blue) 50%, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, var(--accent-purple) 50%, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 160px 120px, var(--accent-blue) 50%, rgba(0,0,0,0));
+            background-repeat: repeat;
+            opacity: 0.3;
+            z-index: 1;
+            animation: stardustRotate 20s linear infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+        @keyframes stardustRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .profile-picture {
@@ -657,8 +697,12 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--space-dark);
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
         }
 
+        /* Enhanced Orbit Animation */
         .profile-picture-orbit {
             position: absolute;
             top: 50%;
@@ -666,9 +710,41 @@
             width: 220px;
             height: 220px;
             transform: translate(-50%, -50%);
-            border: 1px solid rgba(157, 78, 221, 0.3);
+            border: 1px solid rgba(157, 78, 221, 0.2);
             border-radius: 50%;
             animation: orbit 20s linear infinite;
+            z-index: 1;
+        }
+
+        /* Multiple Orbital Rings */
+        .profile-picture-orbit::before,
+        .profile-picture-orbit::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(72, 191, 227, 0.2);
+            animation: pulseOrbit 4s ease-in-out infinite;
+        }
+
+        .profile-picture-orbit::before {
+            inset: -10px;
+            animation-delay: -2s;
+        }
+
+        .profile-picture-orbit::after {
+            inset: -20px;
+            animation-delay: -1s;
+        }
+
+        @keyframes pulseOrbit {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.4;
+            }
         }
 
         .orbit-star {
@@ -678,37 +754,51 @@
             background: var(--accent-purple);
             border-radius: 50%;
             box-shadow: 0 0 10px var(--accent-purple);
+            opacity: 0.5;
+            animation: starTwinkle 2s ease-in-out infinite;
         }
 
-        @keyframes orbit {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
+        /* Additional Orbital Stars */
+        .orbit-star:nth-child(1) { animation-delay: 0s; }
+        .orbit-star:nth-child(2) { animation-delay: 0.5s; }
+        .orbit-star:nth-child(3) { animation-delay: 1s; }
+        .orbit-star:nth-child(4) { animation-delay: 1.5s; }
 
-        @keyframes milkyWayMove {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 1000px 1000px;
-            }
-        }
-
-        @keyframes galaxyRotate {
-            from {
-                transform: rotate(0deg) scale(2.5);
-            }
-            to {
-                transform: rotate(360deg) scale(2.5);
-            }
-        }
-
-        @keyframes backgroundPulse {
+        @keyframes starTwinkle {
             0%, 100% {
-                opacity: 0.95;
+                opacity: 0.5;
+                transform: scale(1);
             }
             50% {
-                opacity: 0.85;
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        /* Nebula Glow Effect */
+        .profile-picture-container .nebula-glow {
+            position: absolute;
+            inset: -30px;
+            border-radius: 50%;
+            background: radial-gradient(
+                circle at center,
+                rgba(157, 78, 221, 0.1) 0%,
+                rgba(72, 191, 227, 0.1) 50%,
+                transparent 70%
+            );
+            filter: blur(10px);
+            z-index: 0;
+            animation: nebulaGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes nebulaGlow {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2) rotate(180deg);
             }
         }
 
@@ -1106,6 +1196,260 @@
                 padding: 1.2rem;
             }
         }
+
+        /* Midterm Task 1 Styles */
+        .midterm-task1-section {
+            padding: 4rem 2rem;
+            background: rgba(45, 50, 82, 0.3);
+            border-radius: 25px;
+            margin: 3rem 0;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-step {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(157, 78, 221, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            background: rgba(45, 50, 82, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(157, 78, 221, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .step-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.2);
+            border-color: var(--accent-purple);
+        }
+
+        .step-content h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-blue);
+        }
+
+        .step-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-content li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-content li i {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .process-image {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(45, 50, 82, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .image-container:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-overlay span {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 20px;
+            background: rgba(157, 78, 221, 0.3);
+        }
+
+        .downloads-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(157, 78, 221, 0.4);
+        }
+
+        /* Animation classes */
+        [data-aos="fade-right"] {
+            transform: translateX(-50px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="fade-left"] {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="zoom-in"] {
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .aos-animate {
+            transform: translate(0) scale(1) !important;
+            opacity: 1 !important;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Modal Styles */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 11, 26, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            animation: modalFadeIn 0.3s ease forwards;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(157, 78, 221, 0.3);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-purple);
+            transform: rotate(90deg);
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -1120,13 +1464,17 @@
     <div class="container">
         <header class="header">
             <div class="profile-picture-container">
+                <div class="nebula-glow"></div>
                 <div class="profile-picture-orbit">
                     <div class="orbit-star" style="top: 0; left: 50%;"></div>
                     <div class="orbit-star" style="bottom: 0; left: 50%;"></div>
                     <div class="orbit-star" style="left: 0; top: 50%;"></div>
                     <div class="orbit-star" style="right: 0; top: 50%;"></div>
                 </div>
-                <img src="https://ibb.co/YTcqmmgJ" class="profile-picture">
+                <img src="https://github.com/user-attachments/assets/24f0bc72-ffe4-4594-b3d0-1aacf1711ee4" 
+                     class="profile-picture" 
+                     alt="Justine Muñoz"
+                     onerror="this.onerror=null; this.src='https://github.com/user-attachments/assets/24f0bc72-ffe4-4594-b3d0-1aacf1711ee4';">
             </div>
             <h1 class="name-title">Justine Muñoz</h1>
             <p class="subtitle">Enterprise Data Management Portfolio</p>
@@ -1236,6 +1584,91 @@
                 </div>
             </div>
         </section>
+
+        <!-- Midterm Task 1 Detailed Section -->
+        <section class="midterm-task1-section">
+            <h2><i class="fas fa-tasks"></i> Midterm Task 1: Data Normalization & Cleaning</h2>
+            
+            <div class="process-timeline">
+                <div class="timeline-step" data-aos="fade-right">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Initial Data Processing</h3>
+                        <ul>
+                            <li><i class="fas fa-file-upload"></i> Load the raw file</li>
+                            <li><i class="fas fa-arrows-alt"></i> Fix columns width and height</li>
+                            <li><i class="fas fa-cut"></i> TRIM words and spaces</li>
+                            <li><i class="fas fa-trash-alt"></i> Remove Null values</li>
+                            <li><i class="fas fa-clone"></i> Remove Duplicates</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-step" data-aos="fade-left">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Normalization Process</h3>
+                        <ul>
+                            <li><i class="fas fa-database"></i> Performed 1NF</li>
+                            <li><i class="fas fa-table"></i> Perform Table split using 2NF</li>
+                            <li><i class="fas fa-check-double"></i> Performed 2NF</li>
+                            <li><i class="fas fa-project-diagram"></i> Mapped the normalization as a physical data model</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-step" data-aos="fade-right">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Before Cleaning</h3>
+                        <div class="image-container">
+                            <img src="https://github.com/user-attachments/assets/d381a49c-9480-45b1-96de-1d14c884c69c" alt="Before Cleaning" class="process-image">
+                            <div class="image-overlay">
+                                <span>Click to Enlarge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-step" data-aos="fade-left">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>After Cleaning</h3>
+                        <div class="image-container">
+                            <img src="https://github.com/user-attachments/assets/876bb391-16f6-4976-90c5-e1696af86e10" alt="After Cleaning" class="process-image">
+                            <div class="image-overlay">
+                                <span>Click to Enlarge</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="erd-section" data-aos="zoom-in">
+                <h3>Entity Relationship Diagram</h3>
+                <div class="image-container">
+                    <img src="https://github.com/user-attachments/assets/5b4b5491-b35b-49a8-be70-86bb587bf3b9" alt="ERD Diagram" class="process-image">
+                    <div class="image-overlay">
+                        <span>Click to Enlarge</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="downloads-section" data-aos="fade-up">
+                <h3><i class="fas fa-download"></i> Download Resources</h3>
+                <div class="download-buttons">
+                    <a href="https://github.com/artjohnamaro/EDM-PORTFOLIO/blob/7adae8eaf08918599285ad8425edd88ae61c524a/Midterm%20Task%201/Clean_Data(Art%20John)-1.xlsx" class="download-btn">
+                        <i class="fas fa-file-excel"></i>
+                        Clean Data
+                    </a>
+                    <a href="https://github.com/artjohnamaro/EDM-PORTFOLIO/blob/e5bb65cb8ac83774d1d502ab86053398b93f8d5d/Midterm%20Task%201/3NF-%20ART%20JOHN%20AMARO.xlsx" class="download-btn">
+                        <i class="fas fa-file-excel"></i>
+                        Normalized Data
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </div>
 
     <div class="music-player">
@@ -1454,6 +1887,46 @@
         // Initialize particle effect
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate elements when they come into view
+            const animatedElements = document.querySelectorAll('[data-aos]');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Handle image clicks for enlargement
+            const images = document.querySelectorAll('.image-container');
+            images.forEach(container => {
+                container.addEventListener('click', () => {
+                    const img = container.querySelector('img');
+                    const modal = document.createElement('div');
+                    modal.className = 'image-modal';
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <img src="${img.src}" alt="${img.alt}">
+                            <button class="close-modal"><i class="fas fa-times"></i></button>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal || e.target.closest('.close-modal')) {
+                            modal.remove();
+                        }
+                    });
+                });
+            });
         });
     </script>
 </body>
